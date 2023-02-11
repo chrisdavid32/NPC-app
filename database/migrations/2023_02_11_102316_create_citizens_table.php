@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ward_id');
+            $table->string('full_name');
+            $table->string('gender');
+            $table->string('address');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }

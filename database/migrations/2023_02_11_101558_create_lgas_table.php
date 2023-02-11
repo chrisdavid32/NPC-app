@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('state_id');
             $table->string('name');
-
-            $table->foreign('state_id')->references('id')->on('lgas')->onDelete('cascade');
             $table->timestamps();
         });
     }
