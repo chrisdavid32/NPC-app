@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(UserController::class)->group(function () {
+     // Display the login page
+    Route::get('/', [UserController::class, 'index'])->name('index');
+     // Authenticate the user
+    Route::post('/authenticate', [UserController::class, 'authenticate'])->name('authenticate');
 });
+
+Route::view('/dashboard', 'dashboard')->name('dashboard')->middleware('auth');
